@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculadora</title>
+    <link rel="stylesheet" href="estilos.css" />
+  </head>
+  <body>
+    <h1>Calculadora</h1>
+    
+    <div>
+      <button id="btn7">7</button>
+      <button id="btn8">8</button>
+      <button id="btn9">9</button>
+      <button id="btnDividir">/</button>
+    </div>
+    
+    <div>
+      <button id="btn4">4</button>
+      <button id="btn5">5</button>
+      <button id="btn6">6</button>
+      <button id="btnMultiplicar">x</button>
+    </div>
+    
+    <div>
+      <button id="btn1">1</button>
+      <button id="btn2">2</button>
+      <button id="btn3">3</button>
+      <button id="btnRestar">-</button>
+    </div>
+    
+    <div>
+      <button id="btnEquals">=</button>
+      <button id="btn0">0</button>
+      <button id="btnPercent">AC</button>
+      <button id="btnSumar">+</button>
+    </div>
+
+    <p id="result">Resultado:</p>
+
+    <script>
+        // Obtén referencias a los botones y al elemento de resultado
+        const btn7 = document.getElementById('btn7');
+        const btn8 = document.getElementById('btn8');
+        const btn9 = document.getElementById('btn9');
+        const btnDividir = document.getElementById('btnDividir');
+        const btn4 = document.getElementById('btn4');
+        const btn5 = document.getElementById('btn5');
+        const btn6 = document.getElementById('btn6');
+        const btnMultiplicar = document.getElementById('btnMultiplicar');
+        const btn1 = document.getElementById('btn1');
+        const btn2 = document.getElementById('btn2');
+        const btn3 = document.getElementById('btn3');
+      Restar = document.getElementById('btnRestar');
+        const btnEquals = document.getElementById('btnEquals');
+        const btn0 = document.getElementById('btn0');
+        const btnPercent = document.getElementById('btnPercent');
+        const btnSumar = document.getElementById('btnSumar');
+        const resultElement = document.getElementById('result'); //Constante donde ire guardando los numeros, operaciones y resultado. Es donde se va concatendo operaciones y se muestra el resultado final
+  
+        // Agrega un listener de clic a cada botón
+        btn7.addEventListener('click', () => anhadir('7')); //Cuando se haga click en el 7 se ejecutará la funcion anhadir y recibirá como parametro el 7
+        btn8.addEventListener('click', () => anhadir('8'));
+        btn9.addEventListener('click', () => anhadir('9'));
+        btnDividir.addEventListener('click', () => anhadir('/'));
+        btn4.addEventListener('click', () => anhadir('4'));
+        btn5.addEventListener('click', () => anhadir('5'));
+        btn6.addEventListener('click', () => anhadir('6'));
+        btnMultiplicar.addEventListener('click', () => anhadir('*')); // Usamos '*' en lugar de 'x' para la operación de multiplicación
+        btn1.addEventListener('click', () => anhadir('1'));
+        btn2.addEventListener('click', () => anhadir('2'));
+        btn3.addEventListener('click', () => anhadir('3'));
+        btnRestar.addEventListener('click', () => anhadir('-'));
+        btnEquals.addEventListener('click', calcularResultado); //Cuando se haga click en = llamaremos directamente a la funcion calcularResultado
+        btn0.addEventListener('click', () => anhadir('0'));
+        btnPercent.addEventListener('click', dejarEnBlanco);
+        btnSumar.addEventListener('click', () => anhadir('+'));
+  
+        // Función para agregar dígitos y operadores, concatenandolos (+=)
+        function anhadir(value) {
+          resultElement.textContent += value; //Aqui apuntamos al parrafo del html donde se encuentre resultElement, después nos centramos solo en el texto que contenga con .textContent y vamos concatenando
+        }
+  
+        // Función para calcular el resultado
+        function calcularResultado() {
+          try {
+            const operaciones = resultElement.textContent;
+            const result = eval(operaciones); // Utilizamos la función eval para evaluar la expresión
+            resultElement.textContent = "Resultado:" +result;
+          } catch (error) {
+            resultElement.textContent = 'Error';
+          }
+        }
+
+        function dejarEnBlanco(){
+            resultElement.textContent="Resultado: ";
+        }
+      </script>
+    </body>
+  </html>
